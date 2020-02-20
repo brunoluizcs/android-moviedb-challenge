@@ -1,115 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <include
+                android:id="@+id/incLayoutDetailContent"
+                layout="@layout/layout_detail_content" />
 
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideStart"
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="20dp" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideEnd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_end="20dp" />
-
-            <ImageView
-                android:id="@+id/backdropImageView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:contentDescription="@null"
-                android:scaleType="centerCrop"
-                app:layout_constraintDimensionRatio="9:5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/ic_image_placeholder" />
-
-            <ImageView
-                android:id="@+id/posterImageView"
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:contentDescription="@null"
-                app:layout_constraintBottom_toBottomOf="@+id/backdropImageView"
-                app:layout_constraintDimensionRatio="w,2:3"
-                app:layout_constraintStart_toStartOf="@id/guideStart"
-                app:layout_constraintTop_toBottomOf="@+id/backdropImageView"
-                tools:srcCompat="@drawable/ic_image_placeholder" />
-
-            <TextView
-                android:id="@+id/nameTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                app:layout_constraintEnd_toEndOf="@id/guideEnd"
-                app:layout_constraintStart_toEndOf="@+id/posterImageView"
-                app:layout_constraintTop_toBottomOf="@+id/backdropImageView"
-                tools:text="Wonder Woman Collections" />
-
+                android:layout_height="wrap_content"/>
 
 
             <TextView
-                android:id="@+id/genresTextView"
-                app:autoSizeTextType="uniform"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toStartOf="@+id/guideEnd"
-                app:layout_constraintStart_toStartOf="@+id/nameTextView"
-                app:layout_constraintTop_toBottomOf="@+id/nameTextView"
-                tools:text="Power. Grace. Wisdom. Wonder." />
-
-            <TextView
-                android:id="@+id/releaseDateTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toStartOf="@+id/guideEnd"
-                app:layout_constraintStart_toStartOf="@+id/nameTextView"
-                app:layout_constraintTop_toBottomOf="@+id/genresTextView"
-                tools:text="20-01-2019" />
-
-            <View
-                android:id="@+id/line"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:background="@android:color/darker_gray"
-                app:layout_constraintEnd_toEndOf="@id/guideEnd"
-                app:layout_constraintStart_toStartOf="@id/guideStart"
-                app:layout_constraintTop_toBottomOf="@+id/releaseDateTextView" />
+                android:id="@+id/messageTextView"
+                tools:text="Error to request data"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-condensed-light"
+                android:paddingTop="32dp"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                android:paddingBottom="32dp"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
 
-
-            <TextView
-                android:id="@+id/overviewTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="@+id/guideEnd"
-                app:layout_constraintStart_toStartOf="@+id/guideStart"
-                app:layout_constraintTop_toBottomOf="@+id/line"
-                tools:text="An Amazon princess comes to the world of Man to become the greatest of the female superheroes." />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
     </ScrollView>
 </layout>

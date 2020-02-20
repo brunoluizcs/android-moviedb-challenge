@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_server_request">Ocorreu uma falha ao recuperar os dados do servidor %s</string>
+</resources>

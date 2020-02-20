@@ -4,7 +4,6 @@ import br.com.fiap.mob18.data.remote.api.TmdbApi
 import br.com.fiap.mob18.data.remote.cache.Cache
 import br.com.fiap.mob18.domain.model.Genre
 import br.com.fiap.mob18.domain.model.Movie
-import io.reactivex.Observable
 import io.reactivex.Single
 
 class MoviesRemoteDataSourceImpl(

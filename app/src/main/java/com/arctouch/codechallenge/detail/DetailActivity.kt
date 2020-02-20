@@ -9,12 +9,11 @@ import androidx.lifecycle.Observer
 import br.com.fiap.mob18.domain.model.Movie
 import com.arctouch.codechallenge.R
 import com.arctouch.codechallenge.databinding.ActivityDetailBinding
-import com.arctouch.codechallenge.extensions.toast
+import com.arctouch.codechallenge.extensions.visible
 import com.arctouch.codechallenge.util.MovieImageUrlBuilder
 import com.arctouch.codechallenge.viewmodel.ViewState
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.movie_item.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
@@ -22,7 +21,7 @@ class DetailActivity : AppCompatActivity() {
     private val detailViewModel : DetailViewModel by viewModel()
 
     companion object{
-        fun startWithMovieId(context : Context, movieId : Long) = Intent(context,DetailActivity::class.java).also {
+        fun intentWithMovieId(context : Context, movieId : Long) = Intent(context,DetailActivity::class.java).also {
             it.putExtra("movieId",movieId)
         }
     }
@@ -48,7 +47,6 @@ class DetailActivity : AppCompatActivity() {
     }
 
 
-
     private fun initializeObservers(){
         detailViewModel.movieData.observe(this, Observer {
             when(it){
@@ -69,27 +67,26 @@ class DetailActivity : AppCompatActivity() {
     private fun onSuccess(movie: Movie) {
         setVisibilities(showData = true)
 
-        binding.nameTextView.text = movie.title
-        binding.genresTextView.text = movie.genres?.joinToString(separator = " | ") { it.name }
-        binding.releaseDateTextView.text = movie.releaseDate
-        binding.overviewTextView.text = movie.overview
+        binding.incLayoutDetailContent.nameTextView.text = movie.title
+        binding.incLayoutDetailContent.genresTextView.text = movie.genres?.joinToString(separator = " | ") { it.name }
+        binding.incLayoutDetailContent.releaseDateTextView.text = movie.releaseDate
+        binding.incLayoutDetailContent.overviewTextView.text = movie.overview
 
-        Glide.with(this)
+        Glide.with(this@DetailActivity)
                 .load(movie.posterPath?.let { MovieImageUrlBuilder.buildPosterUrl(it) })
                 .apply(RequestOptions().placeholder(R.drawable.ic_image_placeholder))
-                .into(binding.posterImageView)
+                .into(binding.incLayoutDetailContent.posterImageView)
 
-        Glide.with(this)
+        Glide.with(this@DetailActivity)
                 .load(movie.backdropPath?.let { MovieImageUrlBuilder.buildBackdropUrl(it) })
                 .apply(RequestOptions().placeholder(R.drawable.ic_image_placeholder))
-                .into(binding.backdropImageView)
+                .into(binding.incLayoutDetailContent.backdropImageView)
     }
 
     private fun onFailed(throwable: Throwable){
         setVisibilities(showMessage = true)
-        toast(throwable.message ?: "")
+        binding.messageTextView.text = getString(R.string.error_server_request,throwable.message)
     }
-
 
 
     private fun setVisibilities(
@@ -97,7 +94,9 @@ class DetailActivity : AppCompatActivity() {
             showData: Boolean = false,
             showMessage: Boolean = false
     ) {
-
+        binding.incLayoutDetailContent.root.visible(showData)
+        binding.progressBar.visible(showProgressBar)
+        binding.messageTextView.visible(showMessage)
     }
 
 

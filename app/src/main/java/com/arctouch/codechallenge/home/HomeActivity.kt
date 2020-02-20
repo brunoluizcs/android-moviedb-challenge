@@ -30,7 +30,7 @@ class HomeActivity : BaseActivity() {
                 recyclerView.adapter = HomeAdapter(moviesWithGenres).also {homeAdapter ->
                     homeAdapter.onMovieClickLister = object : HomeAdapter.OnMovieClickLister{
                         override fun onMovieClick(movie: Movie) {
-                            val i = DetailActivity.startWithMovieId(this@HomeActivity,movie.id.toLong())
+                            val i = DetailActivity.intentWithMovieId(this@HomeActivity,movie.id.toLong())
                             startActivity(i)
                         }
                     }
