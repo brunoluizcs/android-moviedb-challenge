@@ -14,7 +14,7 @@ class MoviesRemoteDataSourceImpl(
     override fun getUpcoming(currentPage: Long): Single<List<Movie>> {
         return getGenres()
             .flatMap {listGenre ->
-                api.upcomingMovies(TmdbApi.API_KEY, TmdbApi.DEFAULT_LANGUAGE, currentPage, TmdbApi.DEFAULT_REGION).map {
+                api.upcomingMovies(TmdbApi.API_KEY, TmdbApi.DEFAULT_LANGUAGE, currentPage.toInt(), TmdbApi.DEFAULT_REGION).map {
                     val moviesWithGenres = it.results.map { movie ->
                         movie.copy(genres = listGenre.filter { movie.genreIds?.contains(it.id) == true })
                     }

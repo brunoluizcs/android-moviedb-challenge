@@ -29,6 +29,7 @@ dependencies {
     implementation dependencies.retrofit
     implementation dependencies.retrofitRxAdapter
     implementation dependencies.retrofitMoshiAdapter
+    implementation dependencies.retrofitLoggingInterceptor
 
     implementation dependencies.okhttp
 

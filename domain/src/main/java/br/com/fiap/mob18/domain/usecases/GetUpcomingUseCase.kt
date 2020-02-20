@@ -7,11 +7,11 @@ import io.reactivex.Observable
 import io.reactivex.Scheduler
 import io.reactivex.Single
 
-class GetUpComingUseCase(
+class GetUpcomingUseCase(
         private val repository : MoviesRepository,
         private val ioScheduler: Scheduler
 ) {
-    fun execute(currentPage : Long = 0) : Single<List<Movie>> {
+    fun execute(currentPage : Long = 1) : Single<List<Movie>> {
         return repository.getUpcoming(currentPage).subscribeOn(ioScheduler)
     }
 }

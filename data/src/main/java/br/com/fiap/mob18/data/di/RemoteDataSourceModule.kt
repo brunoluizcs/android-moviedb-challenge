@@ -4,6 +4,7 @@ import br.com.fiap.mob18.data.remote.api.TmdbApi
 import br.com.fiap.mob18.data.source.MoviesRemoteDataSource
 import br.com.fiap.mob18.data.source.MoviesRemoteDataSourceImpl
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -33,8 +34,11 @@ fun providesOkHttpClient(): OkHttpClient {
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
+            .addInterceptor(HttpLoggingInterceptor().also { it.level = HttpLoggingInterceptor.Level.BODY })
             .build()
 }
+
+
 
 inline fun <reified T> createWebService(
         okHttpClient: OkHttpClient,

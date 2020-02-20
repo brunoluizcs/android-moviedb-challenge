@@ -1,7 +1,7 @@
 package br.com.fiap.mob18.domain.di
 
 import br.com.fiap.mob18.domain.usecases.GetMovieUseCase
-import br.com.fiap.mob18.domain.usecases.GetUpComingUseCase
+import br.com.fiap.mob18.domain.usecases.GetUpcomingUseCase
 import io.reactivex.schedulers.Schedulers
 import org.koin.dsl.module
 
@@ -14,7 +14,7 @@ val useCaseModule = module{
     }
 
     factory{
-        GetUpComingUseCase(
+        GetUpcomingUseCase(
                 repository = get(),
                 ioScheduler = Schedulers.io()
         )
