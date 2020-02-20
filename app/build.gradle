@@ -36,6 +36,9 @@ dependencies {
     def dependencies = rootProject.ext.dependencies
     def testDependencies = rootProject.ext.testDependecies
 
+    implementation project(":domain")
+    implementation project(":data")
+
     implementation dependencies.appCompact
     implementation dependencies.constraintlayout
 
@@ -65,9 +68,6 @@ dependencies {
     implementation dependencies.glide
     kapt dependencies.glideCompiler
 
-    implementation dependencies.retrofit
-    implementation dependencies.retrofitMoshiAdapter
-    implementation dependencies.retrofitRxAdapter
 
     kapt dependencies.dataBinding
 

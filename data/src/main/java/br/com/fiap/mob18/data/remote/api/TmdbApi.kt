@@ -1,8 +1,8 @@
-package com.arctouch.codechallenge.api
+package br.com.fiap.mob18.data.remote.api
 
-import com.arctouch.codechallenge.model.GenreResponse
-import com.arctouch.codechallenge.model.Movie
-import com.arctouch.codechallenge.model.UpcomingMoviesResponse
+import br.com.fiap.mob18.domain.model.GenreResponse
+import br.com.fiap.mob18.domain.model.Movie
+import br.com.fiap.mob18.domain.model.UpcomingMoviesResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
