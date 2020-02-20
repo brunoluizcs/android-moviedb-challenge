@@ -1,5 +1,6 @@
 package com.arctouch.codechallenge.home
 
+
 import android.os.Bundle
 import android.view.View
 import com.arctouch.codechallenge.R
@@ -9,6 +10,7 @@ import com.arctouch.codechallenge.data.Cache
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.home_activity.*
+
 
 class HomeActivity : BaseActivity() {
 
