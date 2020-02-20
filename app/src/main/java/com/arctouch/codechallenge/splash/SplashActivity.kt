@@ -16,13 +16,17 @@ class SplashActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_activity)
 
+
         api.genres(TmdbApi.API_KEY, TmdbApi.DEFAULT_LANGUAGE)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
+            .subscribe( {
                 br.com.fiap.mob18.data.remote.cache.Cache.cacheGenres(it.genres)
                 startActivity(Intent(this, HomeActivity::class.java))
                 finish()
+            },{
+
             }
+            )
     }
 }

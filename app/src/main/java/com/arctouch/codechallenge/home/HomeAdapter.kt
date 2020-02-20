@@ -12,19 +12,26 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.movie_item.view.*
 
-class HomeAdapter(private val movies: List<br.com.fiap.mob18.domain.model.Movie>) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
+class HomeAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    interface OnMovieClickLister{
+        fun onMovieClick(movie: Movie)
+    }
 
-        private val movieImageUrlBuilder = MovieImageUrlBuilder()
+    var onMovieClickLister : OnMovieClickLister? = null
 
-        fun bind(movie: br.com.fiap.mob18.domain.model.Movie) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        fun bind(movie: Movie) {
+            itemView.setOnClickListener {
+                onMovieClickLister?.onMovieClick(movie)
+            }
             itemView.titleTextView.text = movie.title
             itemView.genresTextView.text = movie.genres?.joinToString(separator = ", ") { it.name }
             itemView.releaseDateTextView.text = movie.releaseDate
 
             Glide.with(itemView)
-                .load(movie.posterPath?.let { movieImageUrlBuilder.buildPosterUrl(it) })
+                .load(movie.posterPath?.let { MovieImageUrlBuilder.buildPosterUrl(it) })
                 .apply(RequestOptions().placeholder(R.drawable.ic_image_placeholder))
                 .into(itemView.posterImageView)
         }

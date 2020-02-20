@@ -21,4 +21,4 @@ val useCaseModule = module{
     }
 }
 
-val domainModule = useCaseModule
+val domainModule = listOf(useCaseModule)

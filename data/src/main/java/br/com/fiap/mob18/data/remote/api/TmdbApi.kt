@@ -4,6 +4,7 @@ import br.com.fiap.mob18.domain.model.GenreResponse
 import br.com.fiap.mob18.domain.model.Movie
 import br.com.fiap.mob18.domain.model.UpcomingMoviesResponse
 import io.reactivex.Observable
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -21,7 +22,7 @@ interface TmdbApi {
     fun genres(
         @Query("api_key") apiKey: String,
         @Query("language") language: String
-    ): Observable<GenreResponse>
+    ): Single<GenreResponse>
 
     @GET("movie/upcoming")
     fun upcomingMovies(
@@ -29,12 +30,12 @@ interface TmdbApi {
         @Query("language") language: String,
         @Query("page") page: Long,
         @Query("region") region: String
-    ): Observable<UpcomingMoviesResponse>
+    ): Single<UpcomingMoviesResponse>
 
     @GET("movie/{id}")
     fun movie(
         @Path("id") id: Long,
         @Query("api_key") apiKey: String,
         @Query("language") language: String
-    ): Observable<Movie>
+    ): Single<Movie>
 }
